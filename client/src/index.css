@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Outfit', sans-serif;
+    @apply bg-dark-900 text-white antialiased;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-900;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-600 rounded-full;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-accent-violet;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  }
+
+  .glass-strong {
+    @apply bg-white/10 backdrop-blur-2xl border border-white/15 rounded-2xl;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-hero-gradient;
+  }
+
+  .btn-primary {
+    @apply px-6 py-2.5 rounded-xl font-semibold text-white
+           bg-hero-gradient
+           hover:shadow-lg hover:shadow-accent-violet/15
+           transform hover:-translate-y-0.5
+           transition-all duration-300 ease-out;
+  }
+
+  .btn-outline {
+    @apply px-6 py-2.5 rounded-xl font-semibold
+           border border-accent-violet/30 text-accent-violet
+           hover:bg-accent-violet/10 hover:border-accent-violet
+           transform hover:-translate-y-0.5
+           transition-all duration-300 ease-out;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl
+           bg-dark-700/50 border border-white/10
+           text-white placeholder-gray-500
+           focus:outline-none focus:border-accent-violet/50 focus:ring-1 focus:ring-accent-violet/30
+           transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out
+           hover:transform hover:-translate-y-1
+           hover:shadow-xl hover:shadow-accent-violet/5;
+  }
+}
+
+@layer utilities {
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+}
