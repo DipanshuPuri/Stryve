@@ -30,7 +30,7 @@ function BMRGauge({ value, min = 1000, max = 3500 }) {
 
   return (
     <div className="flex flex-col items-center">
-      <svg viewBox="0 0 200 120" className="w-full max-w-[260px]">
+      <svg viewBox="0 0 200 120" className="w-full max-w-[220px]">
         {/* Background arc segments */}
         <path d={arcPath(-90, -30)} fill="none" stroke="#ef4444" strokeWidth="10" strokeLinecap="round" opacity="0.3" />
         <path d={arcPath(-30, 30)} fill="none" stroke="#eab308" strokeWidth="10" strokeLinecap="round" opacity="0.3" />
@@ -54,9 +54,9 @@ function BMRGauge({ value, min = 1000, max = 3500 }) {
         <text x="88" y="15" fill="#6b7280" fontSize="9" fontWeight="700">Average</text>
         <text x="168" y="105" fill="#6b7280" fontSize="9" fontWeight="700">High</text>
       </svg>
-      <div className="text-center -mt-2">
-        <span className="text-4xl font-black text-white">{Math.round(value)}</span>
-        <span className="text-sm text-gray-500 ml-1 font-bold">kcal/day</span>
+      <div className="text-center -mt-4">
+        <span className="text-3xl font-black text-white">{Math.round(value)}</span>
+        <span className="text-xs text-gray-500 ml-1 font-bold">kcal/day</span>
       </div>
     </div>
   );
@@ -148,81 +148,87 @@ export default function Profile() {
 
   return (
     <div className="w-full">
-      <div className="max-w-5xl mx-auto pb-10">
+      <div className="max-w-5xl mx-auto pb-4">
 
         {/* Header */}
-        <div className="mb-8 animate-fade-in text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div className="mb-4 animate-fade-in text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-4">
           <div>
             <h1 className="text-3xl sm:text-4xl font-black mb-1">
               Profile & <span className="gradient-text">Health</span>
             </h1>
-            <p className="text-gray-400">View your health metrics and update your personal information.</p>
+            <p className="text-gray-400 text-sm">View your health metrics and update your personal information.</p>
           </div>
-          <div className="flex gap-3 mt-4 sm:mt-0">
-            <div className="glass px-4 py-2 rounded-xl border border-white/5 flex flex-col items-center">
-              <span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Fitness Level</span>
-              <span className="text-accent-cyan font-black tracking-wide uppercase">{user?.fitnessLevel || 'Beginner'}</span>
+          <div className="flex gap-2.5 mt-2 sm:mt-0">
+            <div className="glass px-3 py-1.5 rounded-xl border border-white/5 flex flex-col items-center">
+              <span className="text-[9px] text-gray-500 uppercase tracking-widest font-bold">Fitness Level</span>
+              <span className="text-accent-cyan font-black tracking-wide uppercase text-sm">{user?.fitnessLevel || 'Beginner'}</span>
             </div>
           </div>
         </div>
 
         {/* Notifications */}
         {msg && (
-          <div className="mb-6 p-4 bg-green-500/10 border border-green-500/20 text-green-400 rounded-2xl flex items-center justify-center gap-2 animate-slide-up">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
-            <span className="font-bold">{msg}</span>
+          <div className="mb-4 p-3 bg-green-500/10 border border-green-500/20 text-green-400 rounded-xl flex items-center justify-center gap-2 animate-slide-up">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+            <span className="font-bold text-sm">{msg}</span>
           </div>
         )}
         {error && (
-          <div className="mb-6 p-4 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl text-center">{error}</div>
+          <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 text-red-400 rounded-xl text-center text-sm">{error}</div>
         )}
 
         {/* ═══ BMR & Health Section ═══ */}
-        <div className="glass p-8 rounded-3xl animate-slide-up border border-white/5 mb-8">
-          <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
-            <svg className="w-5 h-5 text-accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+        <div className="glass p-5 sm:p-6 rounded-2xl animate-slide-up border border-white/5 mb-4">
+          <h2 className="text-lg font-bold text-white mb-1 flex items-center gap-2">
+            <svg className="w-4 h-4 text-accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
             Your Metabolic Profile
           </h2>
-          <p className="text-sm text-gray-400 mb-6">Based on the Mifflin-St Jeor equation using your age, weight, and height.</p>
+          <p className="text-[13px] text-gray-400 mb-4">Based on the Mifflin-St Jeor equation using your age, weight, and height.</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4">
             {/* BMR Gauge */}
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-2">Basal Metabolic Rate</p>
+            <div className="flex flex-col items-center justify-center bg-dark-800/30 rounded-xl p-3 border border-white/5">
+              <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-1">Basal Metabolic Rate</p>
               <BMRGauge value={bmr} />
-              <p className="text-xs text-gray-500 mt-2 text-center max-w-[200px]">
-                This is the number of calories your body burns at complete rest just to keep you alive.
+              <p className="text-[11px] text-gray-500 mt-2 text-center max-w-[200px] leading-tight">
+                Calories burned at complete rest to keep you alive.
               </p>
             </div>
 
             {/* Quick Stats */}
-            <div className="space-y-3">
-              <div className="bg-dark-800/50 rounded-xl p-4 border border-white/5">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Daily Calorie Target</p>
-                <p className={`text-lg font-black ${rec.color}`}>{rec.cals}</p>
-                <p className="text-[10px] text-gray-500 mt-0.5">For your goal: {formData.goal || 'Maintain'}</p>
+            <div className="space-y-2">
+              <div className="bg-dark-800/50 rounded-xl p-3 border border-white/5 flex items-center justify-between">
+                <div>
+                  <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">Daily Calorie Target</p>
+                  <p className="text-[9px] text-gray-500">For: {formData.goal || 'Maintain'}</p>
+                </div>
+                <p className={`text-base font-black text-right ${rec.color}`}>{rec.cals}</p>
               </div>
-              <div className="bg-dark-800/50 rounded-xl p-4 border border-white/5">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Estimated TDEE</p>
-                <p className="text-lg font-black text-white">{tdee} <span className="text-sm text-gray-500 font-medium">kcal/day</span></p>
-                <p className="text-[10px] text-gray-500 mt-0.5">With moderate activity (3-5 days/week)</p>
+              <div className="bg-dark-800/50 rounded-xl p-3 border border-white/5 flex items-center justify-between">
+                <div>
+                  <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">Estimated TDEE</p>
+                  <p className="text-[9px] text-gray-500">Moderate activity</p>
+                </div>
+                <p className="text-base font-black text-white text-right">{tdee} <span className="text-[10px] text-gray-500">kcal</span></p>
               </div>
-              <div className="bg-dark-800/50 rounded-xl p-4 border border-white/5">
-                <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1">Recommended Protein</p>
-                <p className="text-lg font-black text-accent-cyan">{rec.protein}</p>
-                <p className="text-[10px] text-gray-500 mt-0.5">Per day based on your bodyweight</p>
+              <div className="bg-dark-800/50 rounded-xl p-3 border border-white/5 flex items-center justify-between">
+                <div>
+                  <p className="text-[9px] font-bold text-gray-500 uppercase tracking-widest mb-0.5">Recommended Protein</p>
+                  <p className="text-[9px] text-gray-500">Based on weight</p>
+                </div>
+                <p className="text-base font-black text-accent-cyan text-right">{rec.protein}</p>
               </div>
             </div>
 
             {/* Recommendation */}
-            <div className="bg-accent-violet/5 border border-accent-violet/10 rounded-xl p-5 flex flex-col">
-              <p className="text-[10px] font-bold text-accent-violet uppercase tracking-widest mb-2">📋 Recommendation</p>
-              <p className="text-sm text-gray-300 leading-relaxed flex-1">{rec.advice}</p>
-              <div className="mt-4 pt-3 border-t border-white/5">
-                <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mb-1">Your BMI</p>
+            <div className="bg-accent-violet/5 border border-accent-violet/10 rounded-xl p-4 flex flex-col">
+              <p className="text-[9px] font-bold text-accent-violet uppercase tracking-widest mb-1.5">📋 Recommendation</p>
+              <p className="text-[13px] text-gray-300 leading-relaxed flex-1">{rec.advice}</p>
+              <div className="mt-3 pt-2.5 border-t border-white/5 flex justify-between items-center">
+                <p className="text-[9px] text-gray-500 font-bold uppercase tracking-widest">Your BMI</p>
                 <div className="flex items-center gap-2">
-                  <span className={`text-2xl font-black ${bmiColor}`}>{bmi}</span>
-                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-dark-800 border border-white/5 ${bmiColor}`}>
+                  <span className={`text-xl font-black ${bmiColor}`}>{bmi}</span>
+                  <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold uppercase tracking-wider bg-dark-800 border border-white/5 ${bmiColor}`}>
                     {bmiStatus}
                   </span>
                 </div>
@@ -232,33 +238,33 @@ export default function Profile() {
         </div>
 
         {/* ═══ Profile Form ═══ */}
-        <div className="glass p-8 rounded-3xl animate-slide-up border border-white/5 animation-delay-200">
-          <h2 className="text-xl font-bold text-white mb-6 flex items-center gap-2">
-            <svg className="w-5 h-5 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
+        <div className="glass p-5 sm:p-6 rounded-2xl animate-slide-up border border-white/5 animation-delay-200">
+          <h2 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+            <svg className="w-4 h-4 text-accent-cyan" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" /></svg>
             Personal Information
           </h2>
 
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid grid-cols-2 gap-5">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="grid grid-cols-2 gap-4">
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Full Name</label>
-                <input type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} className="input-field" required />
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Full Name</label>
+                <input type="text" value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} className="input-field !p-2 block w-full text-sm bg-dark-900 border-white/5" required />
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Email</label>
-                <input type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="input-field opacity-60 cursor-not-allowed" disabled />
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Email</label>
+                <input type="email" value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} className="input-field !p-2 block w-full text-sm bg-dark-900/50 border-white/5 opacity-60 cursor-not-allowed" disabled />
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Weight (kg)</label>
-                <input type="number" step="0.1" value={formData.weight} onChange={e => setFormData({ ...formData, weight: e.target.value })} className="input-field" required />
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Weight (kg)</label>
+                <input type="number" step="0.1" value={formData.weight} onChange={e => setFormData({ ...formData, weight: e.target.value })} className="input-field !p-2 block w-full text-sm bg-dark-900 border-white/5" required />
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Height (cm)</label>
-                <input type="number" value={formData.height} onChange={e => setFormData({ ...formData, height: e.target.value })} className="input-field" required />
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Height (cm)</label>
+                <input type="number" value={formData.height} onChange={e => setFormData({ ...formData, height: e.target.value })} className="input-field !p-2 block w-full text-sm bg-dark-900 border-white/5" required />
               </div>
               <div className="col-span-2">
-                <label className="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Primary Goal</label>
-                <select value={formData.goal} onChange={e => setFormData({ ...formData, goal: e.target.value })} className="input-field appearance-none" required>
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Primary Goal</label>
+                <select value={formData.goal} onChange={e => setFormData({ ...formData, goal: e.target.value })} className="input-field !p-2 block w-full text-sm bg-dark-900 border-white/5 appearance-none" required>
                   <option>Build Muscle</option>
                   <option>Lose Weight</option>
                   <option>Improve Endurance</option>
@@ -267,8 +273,8 @@ export default function Profile() {
               </div>
             </div>
 
-            <div className="pt-4 border-t border-white/5 flex justify-end">
-              <button type="submit" disabled={loading} className="btn-primary w-full sm:w-auto px-8">
+            <div className="pt-3 border-t border-white/5 flex justify-end">
+              <button type="submit" disabled={loading} className="btn-primary w-full sm:w-auto px-6 py-2 text-sm font-bold">
                 {loading ? 'Saving...' : 'Save Changes'}
               </button>
             </div>

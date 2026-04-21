@@ -1,12 +1,14 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user } = useAuth(); // Import useAuth to check auth state
+  const location = useLocation();
+  const { user } = useAuth();
 
-  if (user) return null; // Hide navbar if logged in
+  const showNavRoutes = ['/', '/login', '/register'];
+  if (!showNavRoutes.includes(location.pathname)) return null;
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
@@ -27,8 +29,14 @@ export default function Navbar() {
           </div>
 
           <div className="hidden md:flex items-center gap-4">
-            <Link to="/login" className="btn-outline text-sm !px-6 !py-2.5">Login</Link>
-            <Link to="/register" className="btn-primary text-sm !px-6 !py-2.5">Register</Link>
+            {user ? (
+              <Link to="/dashboard" className="btn-primary text-sm !px-6 !py-2.5">Dashboard</Link>
+            ) : (
+              <>
+                <Link to="/login" className="btn-outline text-sm !px-6 !py-2.5">Login</Link>
+                <Link to="/register" className="btn-primary text-sm !px-6 !py-2.5">Register</Link>
+              </>
+            )}
           </div>
 
           {/* Mobile hamburger */}

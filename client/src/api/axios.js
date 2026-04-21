@@ -16,4 +16,21 @@ API.interceptors.request.use((config) => {
   return config;
 });
 
+// Global 401 handler
+API.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // Only redirect if it's a 401 and NOT from the login endpoint
+    if (
+      error.response && 
+      error.response.status === 401 && 
+      !error.config.url.includes('/auth/login')
+    ) {
+      localStorage.removeItem('userInfo');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
 export default API;

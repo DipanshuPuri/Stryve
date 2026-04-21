@@ -46,8 +46,8 @@ export default function Nutrition() {
 
   if (error) {
     return (
-      <div className="w-full max-w-4xl mx-auto p-8">
-        <div className="p-6 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl text-center">
+      <div className="w-full max-w-4xl mx-auto p-4 sm:p-5">
+        <div className="p-4 sm:p-5 bg-red-500/10 border border-red-500/20 text-red-400 rounded-2xl text-center">
           {error}
         </div>
       </div>
@@ -74,33 +74,33 @@ export default function Nutrition() {
 
   return (
     <div className="w-full">
-      <div className="max-w-6xl mx-auto pb-10">
+      <div className="max-w-6xl mx-auto pb-4">
         
         {/* Header */}
-        <div className="mb-10 animate-fade-in relative z-10 text-center sm:text-left">
-          <h1 className="text-3xl sm:text-4xl font-black mb-2">
+        <div className="mb-4 animate-fade-in relative z-10 text-center sm:text-left">
+          <h1 className="text-3xl sm:text-4xl font-black mb-1">
             My <span className="gradient-text">Nutrition</span>
           </h1>
-          <p className="text-gray-400">Target daily intake algorithmically customized for your goal: <span className="text-white capitalize">{user.goal}</span></p>
+          <p className="text-gray-400 text-sm">Target daily intake algorithmically customized for your goal: <span className="text-white capitalize">{user.goal}</span></p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-4">
           
           {/* Daily Macros Visualization Panel */}
-          <div className="lg:col-span-1 space-y-6">
-            <div className="glass p-8 rounded-3xl text-center animate-slide-up flex flex-col items-center">
-               <h2 className="text-sm font-bold mb-8 text-gray-300 uppercase tracking-widest">Daily Target</h2>
+          <div className="lg:col-span-1 space-y-4">
+            <div className="glass p-5 sm:p-6 rounded-2xl text-center animate-slide-up flex flex-col items-center">
+               <h2 className="text-xs font-bold mb-4 text-gray-300 uppercase tracking-widest">Daily Target</h2>
                
                {/* Custom CSS Chart Graphic */}
-               <div className="mb-10 relative w-56 h-56 rounded-full flex items-center justify-center p-3 shadow-[0_0_30px_rgba(34,211,238,0.05)]" style={{ background: conicString }}>
+               <div className="mb-6 relative w-48 h-48 rounded-full flex items-center justify-center p-3 shadow-[0_0_30px_rgba(34,211,238,0.05)]" style={{ background: conicString }}>
                   <div className="w-full h-full bg-dark-800 rounded-full flex flex-col items-center justify-center shadow-inner relative z-10">
-                     <span className="text-4xl font-black text-white">{calories}</span>
+                     <span className="text-3xl font-black text-white">{calories}</span>
                      <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest mt-1">kcal</span>
                   </div>
                </div>
                
                {/* Legend & Gram Readouts */}
-               <div className="w-full space-y-3">
+               <div className="w-full space-y-2">
                  <MacroStat label="Protein" grams={protein} color="bg-blue-500" percent={pPct} />
                  <MacroStat label="Fats" grams={fat} color="bg-yellow-500" percent={fPct} />
                  <MacroStat label="Carbs" grams={carbs} color="bg-red-500" percent={cPct} />
@@ -109,13 +109,13 @@ export default function Nutrition() {
           </div>
 
           {/* Meal Suggestions Layout Grid */}
-          <div className="lg:col-span-2 space-y-6 animate-slide-up animation-delay-200">
-             <div className="flex items-center gap-3 mb-2">
-               <div className="w-2.5 h-2.5 rounded-full bg-accent-cyan shadow-[0_0_10px_rgba(34,211,238,0.25)]"></div>
-               <h2 className="text-xl font-bold text-white">Suggested Meal Plan Builder</h2>
+          <div className="lg:col-span-2 space-y-4 animate-slide-up animation-delay-200">
+             <div className="flex items-center gap-2 mb-1">
+               <div className="w-2 h-2 rounded-full bg-accent-cyan shadow-[0_0_10px_rgba(34,211,238,0.25)]"></div>
+               <h2 className="text-lg font-bold text-white">Suggested Meal Plan Builder</h2>
              </div>
              
-             <div className="grid sm:grid-cols-2 gap-6">
+             <div className="grid sm:grid-cols-2 gap-4">
                <MealCard 
                  title="Breakfast" 
                  time="08:00 AM" 
@@ -155,14 +155,14 @@ export default function Nutrition() {
 
 function MacroStat({ label, grams, color, percent }) {
   return (
-    <div className="flex items-center justify-between w-full p-4 rounded-xl bg-dark-900/70 border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors">
-      <div className={`absolute left-0 top-0 bottom-0 w-1.5 ${color}`}></div>
-      <div className="flex items-center gap-3 pl-3">
-        <h4 className="font-bold text-gray-300 uppercase text-xs tracking-wider">{label}</h4>
+    <div className="flex items-center justify-between w-full p-3 rounded-xl bg-dark-900/70 border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors">
+      <div className={`absolute left-0 top-0 bottom-0 w-1 ${color}`}></div>
+      <div className="flex items-center gap-2 pl-2">
+        <h4 className="font-bold text-gray-300 uppercase text-[10px] tracking-wider">{label}</h4>
       </div>
-      <div className="flex items-center gap-4">
-        <span className="text-lg font-black text-white">{grams}g</span>
-        <span className="text-[10px] font-bold text-gray-500 w-8 text-right bg-dark-800 px-2 py-1 rounded-md">{percent}%</span>
+      <div className="flex items-center gap-3">
+        <span className="text-base font-black text-white">{grams}g</span>
+        <span className="text-[9px] font-bold text-gray-500 w-7 text-right bg-dark-800 px-1.5 py-0.5 rounded text-center">{percent}%</span>
       </div>
     </div>
   );
@@ -170,25 +170,25 @@ function MacroStat({ label, grams, color, percent }) {
 
 function MealCard({ title, time, items, calories, icon }) {
   return (
-    <div className="glass p-6 rounded-2xl hover:-translate-y-1 transition-all duration-300 border border-white/5 flex flex-col group hover:shadow-2xl hover:shadow-cyan-500/5">
-      <div className="flex justify-between items-start mb-5">
+    <div className="glass p-4 sm:p-5 rounded-2xl hover:-translate-y-1 transition-all duration-300 border border-white/5 flex flex-col group hover:shadow-2xl hover:shadow-cyan-500/5">
+      <div className="flex justify-between items-start mb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-dark-800 flex items-center justify-center text-accent-cyan border border-white/10 shadow-inner group-hover:scale-110 group-hover:bg-accent-cyan group-hover:text-dark-900 transition-all">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={icon} /></svg>
           </div>
           <div>
-            <h3 className="font-bold text-lg text-white">{title}</h3>
-            <p className="text-xs font-bold text-accent-violet tracking-wide">~{calories} kcal alloc.</p>
+            <h3 className="font-bold text-sm text-white">{title}</h3>
+            <p className="text-[10px] font-bold text-accent-violet tracking-wide">~{calories} kcal alloc.</p>
           </div>
         </div>
-        <span className="text-[10px] font-black tracking-widest uppercase text-gray-400 bg-dark-900 border border-white/5 px-2 py-1.5 rounded-lg">{time}</span>
+        <span className="text-[9px] font-black tracking-widest uppercase text-gray-400 bg-dark-900 border border-white/5 px-2 py-1 rounded-lg">{time}</span>
       </div>
       
-      <div className="bg-dark-900/50 rounded-xl p-4 mt-auto border border-white/5">
-        <ul className="space-y-2.5">
+      <div className="bg-dark-900/50 rounded-xl p-3 mt-auto border border-white/5">
+        <ul className="space-y-2">
           {items.map((item, i) => (
-            <li key={i} className="flex items-start gap-2.5 text-sm text-gray-300">
-              <div className="w-1.5 h-1.5 rounded-full bg-accent-cyan/80 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(34,211,238,0.30)]"></div>
+            <li key={i} className="flex items-start gap-2 text-xs text-gray-300">
+              <div className="w-1 h-1 rounded-full bg-accent-cyan/80 mt-1.5 shrink-0 shadow-[0_0_8px_rgba(34,211,238,0.30)]"></div>
               <span className="leading-tight">{item}</span>
             </li>
           ))}
